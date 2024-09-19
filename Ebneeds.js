@@ -28,19 +28,20 @@ const Ebneeds = () => {
     }
     useEffect(() => {
         getdata()
-    }, [searchText])
+    }, [])
 
 
     const searchdata = (text) => {
-        if (text == "") {
-            setMusicList(getOldMusicList)
+        if (text === "") {
+            setOldMusicList(getMusicList);
         } else {
+
             let listShow = getMusicList.filter((item) => {
-                return item.name.toLowerCase().indexOf(text.toLowerCase()) > -1
-            })
-            setOldMusicList(listShow)
+                return item.name.toLowerCase().includes(text.toLowerCase());
+            });
+            setOldMusicList(listShow);
         }
-    }
+    };
 
 
     // console.log(getMusicList, "music lisrrr")
@@ -60,6 +61,7 @@ const Ebneeds = () => {
                     onPress={() => {
                         searchRef.current.clear()
                         setSearchText('')
+                        searchdata("")
                     }}
                     style={{ position: 'absolute', right: 10, }}>
 
